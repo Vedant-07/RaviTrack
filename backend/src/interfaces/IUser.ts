@@ -4,3 +4,7 @@ export interface IUser {
   password?: string;
   role: 'admin' | 'staff';
 }
+
+export interface IUserMethods {
+  matchPassword(enteredPassword: string): Promise<boolean>;
+}
