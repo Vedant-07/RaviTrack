@@ -15,7 +15,7 @@ export enum AssetStatus {
 }
 
 export interface IAsset {
-  clientId: Types.ObjectId;
+  companyId: Types.ObjectId;
   category: AssetCategory;
   brand: string;
   model: string;

@@ -2,7 +2,7 @@ import mongoose, { Schema } from 'mongoose';
 import { IAsset, AssetCategory, AssetStatus } from '../interfaces/IAsset';
 
 const assetSchema = new Schema<IAsset>({
-  clientId: { type: Schema.Types.ObjectId, ref: 'Client', required: true },
+  companyId: { type: Schema.Types.ObjectId, ref: 'Company', required: true },
   category: { 
     type: String, 
     enum: Object.values(AssetCategory), 
