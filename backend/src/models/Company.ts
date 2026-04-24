@@ -13,7 +13,8 @@ const companySchema = new Schema<ICompany>({
 });
 
 const generateRandomKey = (): string => {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  // Removed visually ambiguous characters like O, 0, 1, I
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
   let result = '';
   for (let i = 0; i < 6; i++) {
     result += chars.charAt(Math.floor(Math.random() * chars.length));

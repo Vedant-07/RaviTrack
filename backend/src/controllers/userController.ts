@@ -87,3 +87,34 @@ export const getUserProfile = async (req: AuthRequest, res: Response) => {
     res.status(500).json({ message: (error as Error).message });
   }
 };
+
+export const deleteUser = async (req: AuthRequest, res: Response) => {
+  try {
+    const userToDelete = await User.findById(req.params.id);
+
+    if (!userToDelete) {
+      res.status(404).json({ message: 'User not found' });
+      return;
+    }
+
+    if (!req.user || (req.user as any)._id.toString() === userToDelete._id.toString()) {
+      res.status(400).json({ message: 'You cannot delete yourself' });
+      return;
+    }
+
+    await User.findByIdAndDelete(req.params.id);
+    res.json({ message: 'User removed' });
+  } catch (error) {
+    res.status(500).json({ message: (error as Error).message });
+  }
+};
+
+export const getAllUsers = async (req: AuthRequest, res: Response) => {
+  try {
+    // Return all users, strictly excluding their hashed passwords
+    const users = await User.find({}).select('-password');
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ message: (error as Error).message });
+  }
+};

@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
 // using this  USE_GOOGLE_DNS=true in your .env to enable this fix.
 if (process.env.USE_GOOGLE_DNS === 'true') {
