@@ -1,4 +1,7 @@
+import { Types } from 'mongoose';
+
 export interface ICompany {
+  _id?: Types.ObjectId;
   name: string;
   email: string;
   phone: string;

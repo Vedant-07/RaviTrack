@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import connectDB from './config/db';
 import userRoutes from './routes/userRoutes';
 import companyRoutes from './routes/companyRoutes';
+import assetRoutes from './routes/assetRoutes';
+import serviceLogRoutes from './routes/serviceLogRoutes';
 dotenv.config();
 
 const app = express();
@@ -13,6 +15,8 @@ app.use(express.json());
 
 app.use('/users', userRoutes);
 app.use('/companies', companyRoutes);
+app.use('/assets', assetRoutes);
+app.use('/service-logs', serviceLogRoutes);
 
 app.get('/', (req: Request, res: Response) => {
     res.send('RaviTrack Backend is running !!');

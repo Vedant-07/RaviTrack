@@ -6,9 +6,10 @@ import {
   updateCompany,
   resetSecretKey, 
   deleteCompany,
-  getCompanyPortalInfo
+  authCompanyPortal,
+  getCompanyPortalMe
 } from '../controllers/companyController';
-import { protect, admin } from '../middleware/authMiddleware';
+import { protect, admin, protectCompany } from '../middleware/authMiddleware';
 
 const router = express.Router();
 
@@ -16,7 +17,8 @@ router.route('/')
   .post(protect, admin, createCompany)
   .get(protect, getAllCompanies); // Staff and Admins can view
 
-router.post('/portal-info', getCompanyPortalInfo);
+router.post('/portal-login', authCompanyPortal);
+router.get('/portal/me', protectCompany, getCompanyPortalMe);
 router.put('/reset-key', resetSecretKey);
 
 router.route('/:id')

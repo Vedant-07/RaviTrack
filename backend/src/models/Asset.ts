@@ -11,14 +11,15 @@ const assetSchema = new Schema<IAsset>({
   brand: { type: String, required: true },
   model: { type: String, required: true },
   serialNumber: { type: String, required: true, unique: true },
-  amcExpiryDate: { type: Date, required: true },
-  avExpiryDate: { type: Date, required: true },
+  amcExpiryDate: { type: Date, default: null },
+  avExpiryDate: { type: Date, default: null },
   status: { 
     type: String, 
     enum: Object.values(AssetStatus), 
     default: AssetStatus.Active,
     required: true 
-  }
+  },
+  lastModifiedBy: { type: String, required: true }
 }, {
   timestamps: true
 });

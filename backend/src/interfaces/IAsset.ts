@@ -20,7 +20,8 @@ export interface IAsset {
   brand: string;
   model: string;
   serialNumber: string;
-  amcExpiryDate: Date;
-  avExpiryDate: Date;
+  amcExpiryDate?: Date | null;
+  avExpiryDate?: Date | null;
   status: AssetStatus;
+  lastModifiedBy: string;
 }
