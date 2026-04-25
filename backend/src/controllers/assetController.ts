@@ -85,6 +85,24 @@ export const updateAsset = async (req: AuthRequest, res: Response) => {
   }
 };
 
+// @desc    Get all assets for a specific company
+// @route   GET /assets/company/:companyId
+// @access  Protected (Admin & Staff)
+export const getAssetsByCompany = async (req: AuthRequest, res: Response) => {
+  try {
+    const company = await Company.findById(req.params.companyId);
+    if (!company) {
+      res.status(404).json({ message: 'Company not found' });
+      return;
+    }
+
+    const assets = await Asset.find({ companyId: req.params.companyId }).populate('companyId', 'name email');
+    res.json(assets);
+  } catch (error) {
+    res.status(500).json({ message: (error as Error).message });
+  }
+};
+
 export const deleteAsset = async (req: AuthRequest, res: Response) => {
   try {
     const asset = await Asset.findById(req.params.id);

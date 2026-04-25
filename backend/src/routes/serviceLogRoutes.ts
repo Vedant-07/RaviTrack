@@ -18,6 +18,7 @@ router.route('/asset/:assetId')
 
 router.route('/:id')
   .put(protect, updateLog)
-  .delete(protect, deleteLog);//for deleting all the logs of no longer valid asset, will build in the v2
+  .delete(protect, deleteLog);
+//.deleteAll(...) for deleting all the logs of no longer valid asset, will build in the v2
 
 export default router;

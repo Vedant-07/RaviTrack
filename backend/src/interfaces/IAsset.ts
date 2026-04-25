@@ -5,13 +5,14 @@ export enum AssetCategory {
   CCTV = 'CCTV',
   Laptop = 'Laptop',
   UPS = 'UPS',
-  Desktop = 'Desktop'
+  Desktop = 'Desktop',
+  Router='Router'
 }
 
 export enum AssetStatus {
   Active = 'Active',
   Expired = 'Expired',
-  UnderRepair = 'UnderRepair'
+  //UnderRepair = 'UnderRepair'
 }
 
 export interface IAsset {

@@ -5,7 +5,8 @@ import {
   getAssetById,
   updateAsset,
   deleteAsset,
-  getCompanyPortalAssets
+  getCompanyPortalAssets,
+  getAssetsByCompany
 } from '../controllers/assetController';
 import { protect, admin, protectCompany } from '../middleware/authMiddleware';
 
@@ -18,6 +19,9 @@ router.get('/portal/my-assets', protectCompany, getCompanyPortalAssets);
 router.route('/')
   .post(protect, createAsset)
   .get(protect, getAssets);
+
+// Get all assets for a specific company (must be before /:id)
+router.get('/company/:companyId', protect, getAssetsByCompany);
 
 router.route('/:id')
   .get(protect, getAssetById)
