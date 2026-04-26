@@ -6,10 +6,17 @@ import userRoutes from './routes/userRoutes';
 import companyRoutes from './routes/companyRoutes';
 import assetRoutes from './routes/assetRoutes';
 import serviceLogRoutes from './routes/serviceLogRoutes';
+const cors = require('cors');
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(cors({
+  origin: 'http://localhost:5173', // Allow only your Vite app
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true // Allow cookies/headers if needed
+}));
 
 app.use(express.json());
 
