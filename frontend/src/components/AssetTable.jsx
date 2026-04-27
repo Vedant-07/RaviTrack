@@ -1,7 +1,10 @@
 import React from 'react';
-import { Monitor, Cpu, ShieldAlert, CheckCircle2, Clock,Edit3,Trash2,MoreVertical } from 'lucide-react';
+import { Monitor, Cpu, ShieldAlert, CheckCircle2, Clock,Edit3,Trash2,MoreVertical,Wrench } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const AssetTable = ({ assets, loading, isStaffView, onEdit, onDelete }) => {
+
+  const navigate = useNavigate();
   
   // Helper to determine status and badge color
   const getStatus = (expiryDate) => {
@@ -27,6 +30,10 @@ const AssetTable = ({ assets, loading, isStaffView, onEdit, onDelete }) => {
             <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Serial Number</th>
             <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">AMC Status</th>
             <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Antivirus</th>
+            {isStaffView && (
+              <th className="px-6 py-4 text-xs font-bold text-slate-500 uppercase text-right">Actions</th>
+            )}
+            
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-100">
@@ -54,11 +61,6 @@ const AssetTable = ({ assets, loading, isStaffView, onEdit, onDelete }) => {
                   <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${amc.color}`}>
                     {amc.icon} {amc.label}
                   </span>
-                  {asset.amcExpiryDate && (
-                    <p className="text-[10px] text-slate-400 mt-1 pl-1">
-                      Until: {new Date(asset.amcExpiryDate).toLocaleDateString()}
-                    </p>
-                  )}
                 </td>
                 <td className="px-6 py-4">
                   <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold ${av.color}`}>
@@ -66,25 +68,41 @@ const AssetTable = ({ assets, loading, isStaffView, onEdit, onDelete }) => {
                   </span>
                 </td>
 
-                {isStaffView && (
-                  <td className="px-6 py-4 text-right">
-                    <div className="flex justify-end gap-2">
-                      <button 
-                        onClick={() => onEdit(asset)}
-                        className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
-                      >
-                        <Edit3 size={18} />
-                      </button>
-                      <button 
-                        onClick={() => onDelete(asset._id)}
-                        className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
-                      >
-                        <Trash2 size={18} />
-                      </button>
-                    </div>
-                  </td>
-                )}
-                
+                {/* --- CONSOLIDATED ACTIONS CELL --- */}
+                <td className="px-6 py-4 text-right">
+                  <div className="flex justify-end items-center gap-2">
+                    
+
+                    {/* 2. Staff Actions (Edit/Delete) - Grouped next to it */}
+                    {isStaffView && (
+                      <>
+                        <button 
+                          onClick={() => onEdit(asset)}
+                          className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
+                          title="Edit Asset"
+                        >
+                          <Edit3 size={18} />
+                        </button>
+                        <button 
+                          onClick={() => onDelete(asset._id)}
+                          className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                          title="Delete Asset"
+                        >
+                          <Trash2 size={18} />
+                        </button>
+
+                        <button 
+                      onClick={() => navigate(`/dashboard/assets/${asset._id}`)}
+                      className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
+                      title="View Details"
+                    >
+                      <Wrench size={18} />
+                    </button>
+
+                      </>
+                    )}
+                  </div>
+                </td>
               </tr>
             );
           })}

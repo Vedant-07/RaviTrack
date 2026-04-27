@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar';
 import { useAuthStore } from '../store/useAuthStore';
 import CompanyList from './CompanyList';
 import CompanyDetail from './CompanyDetail';
+import AssetDetail from './AssetDetail';
 
 // Temporary components for now
 const Overview = () => <h1 className="text-2xl font-bold">Welcome to the Command Center</h1>;
@@ -22,6 +23,7 @@ const DashboardLayout = () => {
           <Route path="/" element={<Overview />} />
           <Route path="/companies" element={<CompanyList />} />
           <Route path="/companies/:id" element={<CompanyDetail />} />
+          <Route path="/assets/:id" element={<AssetDetail />} />
           
           {/* Admin Protected Page: Even if they know the URL, we check the role */}
           {user?.role === 'admin' && (
