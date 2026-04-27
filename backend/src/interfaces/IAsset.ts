@@ -6,7 +6,9 @@ export enum AssetCategory {
   Laptop = 'Laptop',
   UPS = 'UPS',
   Desktop = 'Desktop',
-  Router='Router'
+  Router='Router',
+  Switch='Switch',
+  Printer='Printer'
 }
 
 export enum AssetStatus {

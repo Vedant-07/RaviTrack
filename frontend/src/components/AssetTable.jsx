@@ -1,7 +1,7 @@
 import React from 'react';
-import { Monitor, Cpu, ShieldAlert, CheckCircle2, Clock } from 'lucide-react';
+import { Monitor, Cpu, ShieldAlert, CheckCircle2, Clock,Edit3,Trash2,MoreVertical } from 'lucide-react';
 
-const AssetTable = ({ assets, loading }) => {
+const AssetTable = ({ assets, loading, isStaffView, onEdit, onDelete }) => {
   
   // Helper to determine status and badge color
   const getStatus = (expiryDate) => {
@@ -65,6 +65,26 @@ const AssetTable = ({ assets, loading }) => {
                     {av.icon} {av.label}
                   </span>
                 </td>
+
+                {isStaffView && (
+                  <td className="px-6 py-4 text-right">
+                    <div className="flex justify-end gap-2">
+                      <button 
+                        onClick={() => onEdit(asset)}
+                        className="p-2 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
+                      >
+                        <Edit3 size={18} />
+                      </button>
+                      <button 
+                        onClick={() => onDelete(asset._id)}
+                        className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all"
+                      >
+                        <Trash2 size={18} />
+                      </button>
+                    </div>
+                  </td>
+                )}
+                
               </tr>
             );
           })}
