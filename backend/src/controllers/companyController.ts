@@ -136,6 +136,7 @@ export const authCompanyPortal = async (req: AuthRequest, res: Response) => {
       phone: company.phone,
       address: company.address,
       isIndividual: company.isIndividual,
+      secretKey:company.secretKey,
       token: generateToken((company._id as any).toString()),
     });
   } catch (error) {
@@ -150,7 +151,7 @@ export const getCompanyPortalMe = async (req: AuthRequest, res: Response) => {
       return;
     }
     // Return company without secret key
-    const company = await Company.findById(req.company._id).select('-secretKey');
+    const company = await Company.findById(req.company._id);//.select('-secretKey')
     res.json(company);
   } catch (error) {
     res.status(500).json({ message: (error as Error).message });

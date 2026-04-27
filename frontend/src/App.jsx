@@ -3,12 +3,11 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import CompanyLoginPage from './pages/CompanyLoginPage';
+import CompanyLoginPage from './pages/company/CompanyLoginPage';
 import PublicRoute from './components/PublicRoute';
-import StaffLoginPage from './pages/StaffLoginPage';
+import StaffLoginPage from './pages/staff/StaffLoginPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import CompanyDashboard from './pages/CompanyDashboard';
-import AdminDashboard from './pages/AdminDashboard';
+import CompanyDashboard from './pages/company/CompanyDashboard';
 import DashboardLayout from './pages/DashboardLayout';
 import { useAuthStore } from './store/useAuthStore';
 import axios from 'axios';
@@ -18,7 +17,7 @@ function App() {
   const { setAuth, logout } = useAuthStore();
   useEffect(() => {
     const verifySession = async () => {
-      console.log("ran to fetch the data again !!!@ ")
+      //console.log("ran to fetch the data again !!!@ ")
       let token=localStorage.getItem("token")
       let userType=localStorage.getItem("userType")
 
@@ -26,17 +25,16 @@ function App() {
         try {
           let res=null
           
-          console.log(userType)
+          //console.log(userType)
 
           if(userType==='staff'){
-            console.log("from the staff")
+            //console.log("from the staff")
             res = await axios.get('http://localhost:3000/users/profile', {
             headers: { Authorization: `Bearer ${token}` }
           });
           }
           else if(userType==='company'){
-            console.log("from the company")
-            console.log(token)
+            //console.log("from the company")
             res = await axios.get('http://localhost:3000/companies/portal/me', {
             headers: { Authorization: `Bearer ${token}` }
             })
@@ -44,7 +42,7 @@ function App() {
           // Update the store with fresh data
           //const userType = localStorage.getItem('userType');
           //TODO:check when the token becomes invalid
-          console.log(res.data)
+          //console.log(res.data)
           setAuth(res.data, token, userType);
         } catch (err) {
           // If token is expired or invalid, kick them out
