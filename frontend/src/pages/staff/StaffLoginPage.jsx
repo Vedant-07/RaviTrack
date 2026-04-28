@@ -5,7 +5,7 @@ import { UserCog, Lock, Mail } from 'lucide-react';
 import axios from 'axios';
 
 const StaffLoginPage = () => {
-  const [email, setEmail] = useState('emp1@raviinfotech.com');
+  const [email, setEmail] = useState('admin@raviinfotech.com');
   const [password, setPassword] = useState('123');
   const { setAuth, isAuthenticated, user } = useAuthStore();
   const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Building2, UserPlus, HardDrive, ShieldAlert } from 'lucide-react';
+import { LayoutDashboard, Building2, UserPlus, HardDrive, ShieldAlert,Settings } from 'lucide-react';
 import { useAuthStore } from '../store/useAuthStore';
 
 const Sidebar = () => {
@@ -13,7 +13,9 @@ const Sidebar = () => {
     { name: 'All Assets', path: '/dashboard/assets', icon: <HardDrive size={20} />, roles: ['admin', 'staff'] },
     // ADMIN ONLY ITEMS
     { name: 'Manage Staff', path: '/dashboard/manage-staff', icon: <UserPlus size={20} />, roles: ['admin'] },
-    { name: 'Audit Logs', path: '/dashboard/audit', icon: <ShieldAlert size={20} />, roles: ['admin'] },
+    // Add this item to your menuItems array
+    { name: 'Manage Companies', path: '/dashboard/manage-companies', icon: <Settings size={20} />, roles: ['admin'] },
+    // { name: 'Audit Logs', path: '/dashboard/audit', icon: <ShieldAlert size={20} />, roles: ['admin'] },
   ];
 
   return (
