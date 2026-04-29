@@ -21,7 +21,6 @@ const StaffLoginPage = () => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:3000/users/login', { email, password });
-      console.log(res.data)
 
       setAuth(res.data, res.data.token,"staff");
 

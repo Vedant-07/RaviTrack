@@ -6,7 +6,6 @@ import { RefreshCw, ShieldCheck, KeyRound } from 'lucide-react';
 const CompanySettings = () => {
   const { user, token, setAuth } = useAuthStore();
   const [isUpdating, setIsUpdating] = useState(false);
-  console.log(user)
 
   const handleResetKey = async () => {
     const confirmed = window.confirm(

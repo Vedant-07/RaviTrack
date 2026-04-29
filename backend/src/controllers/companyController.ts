@@ -157,3 +157,39 @@ export const getCompanyPortalMe = async (req: AuthRequest, res: Response) => {
     res.status(500).json({ message: (error as Error).message });
   }
 };
+
+export const requestCallback = async (req: AuthRequest, res: Response) => {
+  try {
+    const company = await Company.findById(req.params.id);
+
+    if (!company) {
+      res.status(404).json({ message: 'Company not found' });
+      return;
+    }
+
+    company.callbackRequested = true;
+    await company.save();
+
+    res.json({ message: 'Callback requested successfully', company });
+  } catch (error) {
+    res.status(500).json({ message: (error as Error).message });
+  }
+};
+
+export const resolveCallback = async (req: AuthRequest, res: Response) => {
+  try {
+    const company = await Company.findById(req.params.id);
+
+    if (!company) {
+      res.status(404).json({ message: 'Company not found' });
+      return;
+    }
+
+    company.callbackRequested = false;
+    await company.save();
+
+    res.json({ message: 'Callback resolved successfully', company });
+  } catch (error) {
+    res.status(500).json({ message: (error as Error).message });
+  }
+};

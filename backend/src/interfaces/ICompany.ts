@@ -8,4 +8,5 @@ export interface ICompany {
   address: string;
   secretKey?: string; // Optional during creation, generated if missing
   isIndividual: boolean;
+  callbackRequested?: boolean;
 }

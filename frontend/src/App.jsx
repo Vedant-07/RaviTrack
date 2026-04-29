@@ -17,24 +17,21 @@ function App() {
   const { setAuth, logout } = useAuthStore();
   useEffect(() => {
     const verifySession = async () => {
-      //console.log("ran to fetch the data again !!!@ ")
       let token=localStorage.getItem("token")
       let userType=localStorage.getItem("userType")
 
       if (token && userType) {
         try {
           let res=null
-          
-          //console.log(userType)
 
           if(userType==='staff'){
-            //console.log("from the staff")
+            
             res = await axios.get('http://localhost:3000/users/profile', {
             headers: { Authorization: `Bearer ${token}` }
           });
           }
           else if(userType==='company'){
-            //console.log("from the company")
+            
             res = await axios.get('http://localhost:3000/companies/portal/me', {
             headers: { Authorization: `Bearer ${token}` }
             })
@@ -42,7 +39,7 @@ function App() {
           // Update the store with fresh data
           //const userType = localStorage.getItem('userType');
           //TODO:check when the token becomes invalid
-          //console.log(res.data)
+          
           setAuth(res.data, token, userType);
         } catch (err) {
           // If token is expired or invalid, kick them out

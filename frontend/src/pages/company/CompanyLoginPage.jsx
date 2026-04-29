@@ -16,7 +16,6 @@ const CompanyLoginPage = () => {
       // Endpoint to login directly as a Company entity
 
       const res = await axios.post('http://localhost:3000/companies/portal-login', { email, secretKey });
-      console.log(res)
       setAuth(res.data, res.data.token, 'company');
       navigate('/company-dashboard');
     } catch (err) {

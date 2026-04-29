@@ -22,9 +22,6 @@ const AssetDetail = () => {
       ]);
       setAsset(assetRes.data);
       setLogs(logsRes.data);
-      console.log("----------------");
-      
-      console.log(logsRes.data)
     } catch (err) {
       console.error("Error fetching history", err);
     } finally {

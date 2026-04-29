@@ -7,7 +7,8 @@ const companySchema = new Schema<ICompany>({
   phone: { type: String, required: true },
   address: { type: String, required: true },
   secretKey: { type: String, unique: true },
-  isIndividual: { type: Boolean, default: false }
+  isIndividual: { type: Boolean, default: false },
+  callbackRequested: { type: Boolean, default: false }
 }, {
   timestamps: true
 });

@@ -65,9 +65,11 @@ const CompanyDashboard = () => {
 
       {/* Main Content Area */}
       <main className="grow p-8 overflow-y-auto">
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold text-slate-900">Welcome, {user?.name}</h1>
-          <p className="text-slate-500">Managing assets for {user?.name}</p>
+        <header className="mb-8 flex justify-between items-center">
+          <div>
+            <h1 className="text-3xl font-bold text-slate-900">Welcome, {user?.name}</h1>
+            <p className="text-slate-500">Managing assets for {user?.name}</p>
+          </div>
         </header>
 
         {activeTab === 'overview' && <OverviewStats assets={assets} />}

@@ -7,7 +7,9 @@ import {
   resetSecretKey, 
   deleteCompany,
   authCompanyPortal,
-  getCompanyPortalMe
+  getCompanyPortalMe,
+  requestCallback,
+  resolveCallback
 } from '../controllers/companyController';
 import { protect, admin, protectCompany } from '../middleware/authMiddleware';
 
@@ -25,5 +27,8 @@ router.route('/:id')
   .get(protect, getCompanyById) // Staff and Admins can view specific
   .put(protect, admin, updateCompany) // Only Admins can edit
   .delete(protect, admin, deleteCompany); // Only Admins can delete
+
+router.post('/:id/request-callback', protectCompany, requestCallback); // Company can request callback
+router.put('/:id/resolve-callback', protect, resolveCallback); // Staff/Admin can resolve callback
 
 export default router;
