@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 import { useAuthStore } from '../../store/useAuthStore';
 import { UserPlus, Shield, Mail, Edit3, Trash2, Phone } from 'lucide-react';
 import UserModal from '../../components/UserModal';
@@ -12,7 +13,7 @@ const ManageStaff = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/users', {
+      const res = await axios.get(`${BACKEND_API_URL}/users`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(res.data);
@@ -25,7 +26,7 @@ const ManageStaff = () => {
     if (id === currentUser._id) return alert("You cannot delete yourself!");
     if (!window.confirm("Remove this member from Ravi Infotech?")) return;
     try {
-      await axios.delete(`http://localhost:3000/users/${id}`, {
+      await axios.delete(`${BACKEND_API_URL}/users/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchUsers();

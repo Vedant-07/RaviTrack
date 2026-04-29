@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 import { useAuthStore } from '../../store/useAuthStore';
 import { Building2, Plus, Edit3, Trash2, Search, Mail, Phone, MapPin } from 'lucide-react';
 import CompanyModal from '@/components/company/CompanyModal';
@@ -14,7 +15,7 @@ const ManageCompanies = () => {
 
   const fetchCompanies = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/companies', {
+      const res = await axios.get(`${BACKEND_API_URL}/companies`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setCompanies(res.data);
@@ -26,7 +27,7 @@ const ManageCompanies = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("CRITICAL: Deleting a company will remove ALL associated assets and service logs. Are you sure?")) return;
     try {
-      await axios.delete(`http://localhost:3000/companies/${id}`, {
+      await axios.delete(`${BACKEND_API_URL}/companies/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchCompanies();

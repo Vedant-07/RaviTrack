@@ -4,9 +4,11 @@
   "description": "backend code for RaviTrack",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js",
     "dev": "nodemon --watch src --ext ts --exec ts-node src/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: will make the test cases later\" && exit 1",
+    "_comment_for_start_in_dev_mode": "ts-node src/server.ts"
   },
   "keywords": [],
   "author": "Ravi Infotech",

@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../utils/api';
 import { X, MessageSquare, Wrench, User } from 'lucide-react';
 import { useAuthStore } from '../store/useAuthStore';
 
@@ -29,10 +30,10 @@ const ServiceLogModal = ({ isOpen, onClose, assetId, refreshData, editingLog = n
     try {
       if (editingLog) {
         // UPDATE Logic
-        await axios.put(`http://localhost:3000/service-logs/${editingLog._id}`, formData, config);
+        await axios.put(`${BACKEND_API_URL}/service-logs/${editingLog._id}`, formData, config);
       } else {
         // CREATE Logic
-        await axios.post('http://localhost:3000/service-logs', {
+        await axios.post(`${BACKEND_API_URL}/service-logs`, {
           ...formData,
           assetId,
           technicianName: user.name

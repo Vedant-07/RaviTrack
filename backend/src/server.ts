@@ -8,6 +8,7 @@ import assetRoutes from './routes/assetRoutes';
 import serviceLogRoutes from './routes/serviceLogRoutes';
 import dashboardRoutes from './routes/dashboardRoutes';
 import { initCronJobs } from './utils/cronJobs';
+import { seedAdmin } from './utils/seeder';
 const cors = require('cors');
 dotenv.config();
 
@@ -15,7 +16,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: 'http://localhost:5173', // Allow only your Vite app
+  origin: process.env.FRONTEND_API_URL, // Allow only  Vite app
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true // Allow cookies/headers if needed
 }));
@@ -32,9 +33,11 @@ app.get('/', (req: Request, res: Response) => {
     res.send('RaviTrack Backend is running !!');
 });
 
-app.listen(port, () => {
+app.listen(port, async () => {
     // Connect to database
-    connectDB();
+    await connectDB();
+    // Seed default admin
+    await seedAdmin();
     // Initialize scheduled tasks
     initCronJobs();
     console.log(`Asset mgmt app listening on port ${port}`);

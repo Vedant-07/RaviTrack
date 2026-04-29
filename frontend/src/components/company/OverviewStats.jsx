@@ -1,5 +1,6 @@
 import { useAuthStore } from '@/store/useAuthStore';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 import { 
   LayoutDashboard, 
   HardDrive, 
@@ -23,7 +24,7 @@ export const OverviewStats = ({ assets }) => {
   const handleRequestCallback = async () => {
     setCallbackLoading(true);
     try {
-      await axios.post(`http://localhost:3000/companies/${user._id}/request-callback`, {}, {
+      await axios.post(`${BACKEND_API_URL}/companies/${user._id}/request-callback`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert('Callback requested successfully. Our team will contact you soon.');

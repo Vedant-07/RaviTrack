@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuthStore } from '../../store/useAuthStore';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 import { 
   LayoutDashboard, 
   HardDrive, 
@@ -26,7 +27,7 @@ const CompanyDashboard = () => {
 
     const fetchMyAssets = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/assets/company/${user._id}`, {
+        const res = await axios.get(`${BACKEND_API_URL}/assets/company/${user._id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setAssets(res.data);

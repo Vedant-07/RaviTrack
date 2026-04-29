@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../utils/api';
 import { X, User, Mail, Shield, Lock,Phone } from 'lucide-react';
 import { useAuthStore } from '../store/useAuthStore';
 
@@ -26,9 +27,9 @@ const UserModal = ({ isOpen, onClose, refreshData, editingUser = null }) => {
         // If password is empty, don't send it to backend
         const updateData = { ...formData };
         if (!updateData.password) delete updateData.password;
-        await axios.put(`http://localhost:3000/users/${editingUser._id}`, updateData, config);
+        await axios.put(`${BACKEND_API_URL}/users/${editingUser._id}`, updateData, config);
       } else {
-        await axios.post('http://localhost:3000/users/register', formData, config);
+        await axios.post(`${BACKEND_API_URL}/users/register`, formData, config);
       }
       refreshData();
       onClose();

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 import { useAuthStore } from '../../store/useAuthStore';
 import { Building2, Search, ExternalLink, Key } from 'lucide-react';
 
@@ -14,7 +15,7 @@ const CompanyList = () => {
   useEffect(() => {
     const fetchCompanies = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/companies', {
+        const res = await axios.get(`${BACKEND_API_URL}/companies`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setCompanies(res.data);

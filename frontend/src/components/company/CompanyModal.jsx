@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 import { X, Building2, Mail, Phone, MapPin } from 'lucide-react';
 import { useAuthStore } from '../../store/useAuthStore';
 
@@ -23,9 +24,9 @@ const CompanyModal = ({ isOpen, onClose, refreshData, editingCompany = null }) =
     
     try {
       if (editingCompany) {
-        await axios.put(`http://localhost:3000/companies/${editingCompany._id}`, formData, config);
+        await axios.put(`${BACKEND_API_URL}/companies/${editingCompany._id}`, formData, config);
       } else {
-        await axios.post('http://localhost:3000/companies', formData, config);
+        await axios.post(`${BACKEND_API_URL}/companies`, formData, config);
       }
       refreshData();
       onClose();

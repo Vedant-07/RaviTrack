@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/useAuthStore';
 import { Building2, KeyRound, Mail } from 'lucide-react';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 
 const CompanyLoginPage = () => {
   const [email, setEmail] = useState('bankers@gmail.com');
@@ -15,7 +16,7 @@ const CompanyLoginPage = () => {
     try {
       // Endpoint to login directly as a Company entity
 
-      const res = await axios.post('http://localhost:3000/companies/portal-login', { email, secretKey });
+      const res = await axios.post(`${BACKEND_API_URL}/companies/portal-login`, { email, secretKey });
       setAuth(res.data, res.data.token, 'company');
       navigate('/company-dashboard');
     } catch (err) {
