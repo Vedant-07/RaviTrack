@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useAuthStore } from '../store/useAuthStore';
+import { useAuthStore } from '../../store/useAuthStore';
 import { Plus, HardDrive, MapPin, Phone } from 'lucide-react';
-import AssetTable from '../components/AssetTable'; // Reuse your component!
-import AssetModal from '@/components/AssetModal';
+import AssetTable from '../../components/asset/AssetTable'; // Reuse your component!
+import AssetModal from '../../components/asset/AssetModal';
 
 const CompanyDetail = () => {
   const { id } = useParams();

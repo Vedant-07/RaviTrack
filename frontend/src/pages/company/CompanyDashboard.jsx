@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { OverviewStats } from '@/components/company/OverviewStats';
 
-import AssetTable from '@/components/AssetTable';
+import AssetTable from '@/components/asset/AssetTable';
 import CompanySettings from '@/components/company/CompanySettings';
 
 const CompanyDashboard = () => {

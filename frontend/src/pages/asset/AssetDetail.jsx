@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useAuthStore } from '../store/useAuthStore';
+import { useAuthStore } from '../../store/useAuthStore';
 import { Wrench, Calendar, User, ClipboardList, Plus,Edit3,Trash2 } from 'lucide-react';
 import ServiceLogModal from '@/components/ServiceLogModal';
 

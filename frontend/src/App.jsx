@@ -8,7 +8,7 @@ import PublicRoute from './components/PublicRoute';
 import StaffLoginPage from './pages/staff/StaffLoginPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import CompanyDashboard from './pages/company/CompanyDashboard';
-import DashboardLayout from './pages/DashboardLayout';
+import DashboardLayout from './pages/dashboard/DashboardLayout';
 import { useAuthStore } from './store/useAuthStore';
 import axios from 'axios';
 
@@ -69,12 +69,6 @@ function App() {
     </ProtectedRoute>
   } />
 
-  {/* Ravi Infotech Staff/Admin Dashboards */}
-  {/* <Route path="/admin-dashboard" element={
-    <ProtectedRoute allowedType="staff"> 
-      <AdminDashboard />
-    </ProtectedRoute>
-  } /> */}
 
   {/* Internal Team Dashboard (Admin & Staff) */}
   <Route path="/dashboard/*" element={

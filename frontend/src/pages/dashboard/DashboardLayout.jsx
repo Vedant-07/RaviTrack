@@ -1,18 +1,14 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Sidebar from '../components/Sidebar';
-import { useAuthStore } from '../store/useAuthStore';
-import CompanyList from './CompanyList';
-import CompanyDetail from './CompanyDetail';
-import AssetDetail from './AssetDetail';
-import ManageStaff from './ManageStaff';
-import ManageCompanies from './company/ManageCompanies';
+import Sidebar from '../../components/Sidebar';
+import { useAuthStore } from '../../store/useAuthStore';
+import CompanyList from '../company/CompanyList';
+import CompanyDetail from '../company/CompanyDetail';
+import AssetDetail from '../asset/AssetDetail';
+import ManageStaff from '../admin/ManageStaff';
+import ManageCompanies from '../company/ManageCompanies';
 
 import DashboardOverview from './DashboardOverview';
-
-// Temporary components for now
-// const CompanyList = () => <h1 className="text-2xl font-bold">Client Organizations</h1>;
-// const StaffManagement = () => <h1 className="text-2xl font-bold">Admin Only: Staff Management</h1>;
 
 const DashboardLayout = () => {
   const { user } = useAuthStore();

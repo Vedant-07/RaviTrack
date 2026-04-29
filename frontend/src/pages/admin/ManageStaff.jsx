@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuthStore } from '../store/useAuthStore';
+import { useAuthStore } from '../../store/useAuthStore';
 import { UserPlus, Shield, Mail, Edit3, Trash2, Phone } from 'lucide-react';
-import UserModal from '../components/UserModal';
+import UserModal from '../../components/UserModal';
 
 const ManageStaff = () => {
   const [users, setUsers] = useState([]);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { X, HardDrive, Hash, ShieldCheck, Calendar } from 'lucide-react';
-import { useAuthStore } from '../store/useAuthStore';
+import { useAuthStore } from '../../store/useAuthStore';
 
 const AssetModal = ({ isOpen, onClose, companyId, refreshData, editingAsset = null }) => {
   const { user, token } = useAuthStore();
