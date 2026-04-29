@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 import { useAuthStore } from '../../store/useAuthStore';
 import { Plus, HardDrive, MapPin, Phone } from 'lucide-react';
-import AssetTable from '../../components/asset/AssetTable'; // Reuse your component!
+import AssetTable from '../../components/asset/AssetTable';
 import AssetModal from '../../components/asset/AssetModal';
 
 const CompanyDetail = () => {
@@ -19,7 +20,7 @@ const CompanyDetail = () => {
   const handleDelete = async (assetId) => {
     if (!window.confirm("Delete this hardware from records?")) return;
     try {
-      await axios.delete(`http://localhost:3000/assets/${assetId}`, {
+      await axios.delete(`${BACKEND_API_URL}/assets/${assetId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchData(); // Reload the list
@@ -39,8 +40,8 @@ const CompanyDetail = () => {
   const fetchData = async () => {
       try {
         const [compRes, assetRes] = await Promise.all([
-          axios.get(`http://localhost:3000/companies/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
-          axios.get(`http://localhost:3000/assets/company/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+          axios.get(`${BACKEND_API_URL}/companies/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get(`${BACKEND_API_URL}/assets/company/${id}`, { headers: { Authorization: `Bearer ${token}` } })
         ]);
         setCompany(compRes.data);
         setAssets(assetRes.data);

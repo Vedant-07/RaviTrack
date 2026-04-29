@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 import { useAuthStore } from '../../store/useAuthStore';
 import { RefreshCw, ShieldCheck, KeyRound } from 'lucide-react';
 
@@ -17,7 +18,7 @@ const CompanySettings = () => {
     setIsUpdating(true);
     try {
       // API call to the reset-key route
-      const res = await axios.put('http://localhost:3000/companies/reset-key', {
+      const res = await axios.put(`${BACKEND_API_URL}/companies/reset-key`, {
         "email":user?.email,
         "currentSecretKey":user?.secretKey
       }, {

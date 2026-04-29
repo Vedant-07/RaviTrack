@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 import { X, HardDrive, Hash, ShieldCheck, Calendar } from 'lucide-react';
 import { useAuthStore } from '../../store/useAuthStore';
 
@@ -35,9 +36,9 @@ const AssetModal = ({ isOpen, onClose, companyId, refreshData, editingAsset = nu
 
     try {
       if (editingAsset) {
-        await axios.put(`http://localhost:3000/assets/${editingAsset._id}`, payload, config);
+        await axios.put(`${BACKEND_API_URL}/assets/${editingAsset._id}`, payload, config);
       } else {
-        await axios.post('http://localhost:3000/assets', payload, config);
+        await axios.post(`${BACKEND_API_URL}/assets`, payload, config);
       }
       refreshData();
       onClose();

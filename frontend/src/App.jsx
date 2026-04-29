@@ -11,6 +11,7 @@ import CompanyDashboard from './pages/company/CompanyDashboard';
 import DashboardLayout from './pages/dashboard/DashboardLayout';
 import { useAuthStore } from './store/useAuthStore';
 import axios from 'axios';
+import { BACKEND_API_URL } from './utils/api';
 
 function App() {
 
@@ -26,13 +27,13 @@ function App() {
 
           if(userType==='staff'){
             
-            res = await axios.get('http://localhost:3000/users/profile', {
+            res = await axios.get(`${BACKEND_API_URL}/users/profile`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           }
           else if(userType==='company'){
             
-            res = await axios.get('http://localhost:3000/companies/portal/me', {
+            res = await axios.get(`${BACKEND_API_URL}/companies/portal/me`, {
             headers: { Authorization: `Bearer ${token}` }
             })
           }

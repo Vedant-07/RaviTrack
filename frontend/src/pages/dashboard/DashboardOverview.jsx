@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 import { useAuthStore } from '../../store/useAuthStore';
 import { 
   Briefcase, 
@@ -19,7 +20,7 @@ const DashboardOverview = () => {
   const handleResolveCallback = async (companyId) => {
     try {
       setResolvingId(companyId);
-      await axios.put(`http://localhost:3000/companies/${companyId}/resolve-callback`, {}, {
+      await axios.put(`${BACKEND_API_URL}/companies/${companyId}/resolve-callback`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Remove it from the local state
@@ -42,14 +43,14 @@ const DashboardOverview = () => {
       try {
         setLoading(true);
         // Both Staff and Admin get Staff Stats
-        const staffRes = await axios.get('http://localhost:3000/dashboard/staff', {
+        const staffRes = await axios.get(`${BACKEND_API_URL}/dashboard/staff`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         setStaffStats(staffRes.data);
 
         // Only Admin gets Admin Stats
         if (user.role === 'admin') {
-          const adminRes = await axios.get('http://localhost:3000/dashboard/admin', {
+          const adminRes = await axios.get(`${BACKEND_API_URL}/dashboard/admin`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           setAdminStats(adminRes.data);

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 import { useAuthStore } from '../../store/useAuthStore';
 import { Wrench, Calendar, User, ClipboardList, Plus,Edit3,Trash2 } from 'lucide-react';
 import ServiceLogModal from '@/components/ServiceLogModal';
@@ -17,8 +18,8 @@ const AssetDetail = () => {
   const fetchAssetData = async () => {
     try {
       const [assetRes, logsRes] = await Promise.all([
-        axios.get(`http://localhost:3000/assets/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
-        axios.get(`http://localhost:3000/service-logs/asset/${id}`, { headers: { Authorization: `Bearer ${token}` } })
+        axios.get(`${BACKEND_API_URL}/assets/${id}`, { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get(`${BACKEND_API_URL}/service-logs/asset/${id}`, { headers: { Authorization: `Bearer ${token}` } })
       ]);
       setAsset(assetRes.data);
       setLogs(logsRes.data);

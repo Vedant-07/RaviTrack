@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/useAuthStore';
 import { UserCog, Lock, Mail } from 'lucide-react';
 import axios from 'axios';
+import { BACKEND_API_URL } from '../../utils/api';
 
 const StaffLoginPage = () => {
   const [email, setEmail] = useState('admin@raviinfotech.com');
@@ -10,17 +11,10 @@ const StaffLoginPage = () => {
   const { setAuth, isAuthenticated, user } = useAuthStore();
   const navigate = useNavigate();
 
-  // // Auto-redirect if already logged in
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     navigate(user?.role === 'client' ? '/client-dashboard' : '/admin-dashboard');
-  //   }
-  // }, [isAuthenticated, navigate, user]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:3000/users/login', { email, password });
+      const res = await axios.post(`${BACKEND_API_URL}/users/login`, { email, password });
 
       setAuth(res.data, res.data.token,"staff");
 
